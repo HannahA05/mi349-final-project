@@ -1,5 +1,5 @@
 /* =========================================
-   GLOBAL VARIABLES
+   COLOR + FONT VARIABLES
 ========================================= */
 :root {
   --dark: #463f3a;
@@ -13,9 +13,8 @@
 }
 
 /* =========================================
-   GLOBAL BASE STYLES
+   GLOBAL STYLES
 ========================================= */
-
 * {
   box-sizing: border-box;
 }
@@ -30,10 +29,14 @@ body {
   animation: pageFloat 0.7s ease-out forwards;
 }
 
+@keyframes pageFloat {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* =========================================
    HEADER + NAV
 ========================================= */
-
 header {
   background-color: #ffffff;
   padding: 100px 0;
@@ -51,7 +54,6 @@ nav {
   position: relative;
 }
 
-/* Logo */
 .logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 3rem;
@@ -59,7 +61,6 @@ nav {
   color: var(--dark);
 }
 
-/* Nav links wrapper */
 .nav-links {
   display: flex;
   gap: 50px;
@@ -68,7 +69,6 @@ nav {
   margin-right: 80px;
 }
 
-/* Individual nav links */
 nav a {
   text-decoration: none;
   color: var(--dark);
@@ -77,16 +77,22 @@ nav a {
   transition: color 0.2s ease;
 }
 
-/* Small click bump */
-nav a:active {
-  animation: bump 0.25s ease-out;
-}
-
 nav a:hover {
   color: var(--peach);
 }
 
-/* Flower icon in header */
+/* Click bump */
+nav a:active {
+  animation: bump 0.25s ease-out;
+}
+
+@keyframes bump {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+  100% { transform: translateY(0); }
+}
+
+/* Flower icon */
 .flower-icon {
   width: 180px;
   position: absolute;
@@ -95,10 +101,14 @@ nav a:hover {
   animation: grow 5s ease-in-out infinite;
 }
 
-/* =========================================
-   HOME PAGE HERO
-========================================= */
+@keyframes grow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
 
+/* =========================================
+   HOMEPAGE HERO
+========================================= */
 .hero {
   padding: 200px 20px;
   margin-left: 100px;
@@ -109,28 +119,35 @@ nav a:hover {
 
 .hero h1,
 .hero p,
-.cta-button {
+.cta-wrap {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.9s ease-out forwards;
 }
 
+.hero h1 { animation-delay: 0.2s; }
+.hero p { animation-delay: 0.35s; }
+.cta-wrap { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .hero h1 {
-  animation-delay: 0.2s;
   font-family: var(--heading-font);
   font-size: 6rem;
   margin: 0;
 }
 
 .hero p {
-  animation-delay: 0.35s;
   font-size: 2rem;
   color: var(--taupe);
-  margin: 20px 0 40px 0;
+  margin: 20px 0 40px;
 }
 
+/* CTA BUTTON */
 .cta-button {
-  animation-delay: 0.5s;
   background-color: var(--peach);
   color: white;
   padding: 20px 40px;
@@ -138,36 +155,42 @@ nav a:hover {
   text-decoration: none;
   font-weight: 700;
   font-size: 1.4rem;
-  display: inline-block;
+  display: inline-block; /* prevents hover flicker */
   transition: box-shadow 0.3s ease;
 }
 
-/* Wiggle on hover */
+/* Wiggle fix */
 .cta-button:hover {
   animation: wiggle 0.45s ease-in-out;
+  opacity: 1 !important; 
+  transform: none;
+}
+
+@keyframes wiggle {
+  0%   { transform: rotate(0); }
+  25%  { transform: rotate(1deg); }
+  50%  { transform: rotate(-1deg); }
+  75%  { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
 }
 
 /* =========================================
    ABOUT PAGE
 ========================================= */
-
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 120px 40px;
 }
 
-/* About hero: image + text */
 .about-hero {
   display: flex;
   align-items: center;
   gap: 60px;
   margin-bottom: 100px;
-
   opacity: 0;
   animation: fadeUp 0.8s ease-out forwards;
   animation-delay: 0.3s;
-
   min-height: 350px;
 }
 
@@ -182,7 +205,6 @@ nav a:hover {
 .about-text h2 {
   font-size: 3.5rem;
   margin-bottom: 20px;
-  font-family: var(--heading-font);
 }
 
 .about-text p {
@@ -210,7 +232,7 @@ nav a:hover {
   color: var(--peach);
 }
 
-/* Info cards under about */
+/* Info cards */
 .info-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -233,7 +255,6 @@ nav a:hover {
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
-/* Peach glow border on hover */
 .card::after {
   content: "";
   position: absolute;
@@ -241,7 +262,6 @@ nav a:hover {
   border-radius: 20px;
   background: linear-gradient(45deg, #e0afa0, transparent 60%);
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
@@ -249,40 +269,9 @@ nav a:hover {
   opacity: 1;
 }
 
-.card h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 1.2rem;
-  color: var(--taupe);
-}
-
-/* About page CTA */
-.about-cta {
-  text-align: center;
-}
-
-.cta-secondary {
-  font-size: 1.6rem;
-  text-decoration: none;
-  color: var(--dark);
-  font-weight: 700;
-  padding-bottom: 6px;
-  border-bottom: 3px solid var(--peach);
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.cta-secondary:hover {
-  color: var(--peach);
-  transform: translateY(-3px);
-}
-
 /* =========================================
-   PROJECTS GRID PAGE
+   PROJECTS PAGE
 ========================================= */
-
 .projects-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -293,7 +282,6 @@ nav a:hover {
   font-size: 3.5rem;
   font-family: var(--heading-font);
   margin-bottom: 60px;
-  text-align: left;
 }
 
 .project-grid {
@@ -302,20 +290,17 @@ nav a:hover {
   gap: 40px;
 }
 
-/* Project cards */
 .project-card {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 32px;
   border-radius: 20px;
   text-decoration: none;
   color: var(--dark);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  position: relative;
-  overflow: hidden;
-
   display: flex;
   flex-direction: column;
-
+  position: relative;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -331,7 +316,6 @@ nav a:hover {
   border-radius: 20px;
   background: linear-gradient(45deg, #e0afa0, transparent 60%);
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
@@ -371,7 +355,6 @@ nav a:hover {
 /* =========================================
    PROJECT DETAIL PAGES
 ========================================= */
-
 .project-detail {
   max-width: 1200px;
   margin: 0 auto;
@@ -389,76 +372,17 @@ nav a:hover {
 .project-hero h1 {
   font-family: var(--heading-font);
   font-size: 3.2rem;
-  margin-bottom: 12px;
 }
 
 .project-subtitle {
   font-size: 1.3rem;
   color: var(--taupe);
   max-width: 700px;
-  margin-bottom: 24px;
-}
-
-.project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.pill {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background-color: rgba(224, 175, 160, 0.15);
-  color: var(--peach);
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-/* Layout: text + images */
-.project-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.project-copy h2 {
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-  margin-top: 18px;
-}
-
-.project-copy p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--dark);
-}
-
-/* Images column */
-.project-images {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.project-image img {
-  width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  display: block;
-}
-
-.project-image figcaption {
-  font-size: 0.95rem;
-  color: var(--taupe);
-  margin-top: 8px;
 }
 
 /* =========================================
    CONTACT PAGE
 ========================================= */
-
 .contact-container {
   max-width: 900px;
   margin: 0 auto;
@@ -466,60 +390,17 @@ nav a:hover {
   text-align: center;
 }
 
-.contact-hero h1 {
-  font-size: 3.5rem;
-  font-family: var(--heading-font);
-  margin-bottom: 10px;
-  opacity: 0;
-  animation: fadeUp 0.9s ease-out forwards;
-}
-
-.contact-hero p {
-  font-size: 1.3rem;
-  color: var(--taupe);
-  max-width: 600px;
-  margin: 0 auto 50px auto;
-  opacity: 0;
-  animation: fadeUp 0.9s ease-out forwards;
-  animation-delay: 0.15s;
-}
-
-/* Contact Card */
 .contact-card {
-  background: #ffffff;
+  background: #fff;
   padding: 50px;
   border-radius: 22px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.07);
   position: relative;
   overflow: visible;
-
   opacity: 0;
   animation: fadeUp 0.9s ease-out forwards;
-  animation-delay: 0.3s;
 }
 
-.contact-card h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-}
-
-.email-line,
-.linkedin-line {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-}
-
-.contact-card a {
-  color: var(--peach);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.contact-card a:hover {
-  text-decoration: underline;
-}
-
-/* Glow border on contact card */
 .contact-card::after {
   content: "";
   position: absolute;
@@ -528,57 +409,23 @@ nav a:hover {
   padding: 2px;
   background: linear-gradient(45deg, #e0afa0, transparent 60%);
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s ease;
-  z-index: 2;
+  pointer-events: none;
 }
 
 .contact-card:hover::after {
   opacity: 1;
 }
 
-/* Bunny sitting on card */
+/* BUNNY ANIMATION */
 .contact-bunny {
   width: 205px;
   position: absolute;
   top: -85px;
   left: -5px;
   z-index: 10;
-  transform-origin: bottom center;
   animation: bunnyHop 2.4s ease-in-out infinite;
-}
-
-/* =========================================
-   ANIMATIONS
-========================================= */
-
-@keyframes pageFloat {
-  from { opacity: 0; transform: translateY(15px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes bump {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(3px); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes grow {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.1); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes wiggle {
-  0%   { transform: rotate(0); }
-  25%  { transform: rotate(1deg); }
-  50%  { transform: rotate(-1deg); }
-  75%  { transform: rotate(1deg); }
-  100% { transform: rotate(0); }
+  transform-origin: bottom center;
 }
 
 @keyframes bunnyHop {
@@ -589,114 +436,69 @@ nav a:hover {
 }
 
 /* =========================================
-   RESPONSIVE LAYOUT
+   MOBILE FIXES
 ========================================= */
-
-/* General tablet-ish layout tweaks */
-@media (max-width: 900px) {
-  .info-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Mobile: stacked nav + smaller hero text */
 @media (max-width: 800px) {
-
-  /* Header + nav: logo on top, links centered below */
-  header {
-    padding: 40px 0;
-  }
-
   nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
+    gap: 20px;
   }
 
   .logo {
-    font-size: 2.2rem;
-  }
-
-  .nav-links {
-    margin: 0;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
+    font-size: 2rem;
   }
 
   .nav-links a {
     font-size: 1.2rem;
   }
 
+  /* FIX: Flower no longer overlaps nav text */
   .flower-icon {
-    width: 90px;
-    top: -5px;
+    width: 70px;
+    top: -40px;
     right: 10px;
+    opacity: 0.8;
+    z-index: -1;
   }
 
-  /* Home hero */
+  /* Hero */
   .hero {
-    margin-left: 0;
-    padding: 120px 20px 80px 20px;
+    margin-left: 20px;
   }
 
   .hero h1 {
-    font-size: 3rem;       /* MUCH smaller on mobile (your choice B) */
+    font-size: 3rem;
   }
 
-  .hero p {
-    font-size: 1.4rem;
-    max-width: 100%;
+  /* Projects */
+  .project-grid {
+    grid-template-columns: 1fr;
   }
 
-  .cta-button {
-    font-size: 1.2rem;
-    padding: 16px 28px;
+  .project-img {
+    height: 230px;
   }
 
-  /* Shared container padding */
-  .about-container,
-  .projects-container,
-  .project-detail,
-  .contact-container {
-    padding: 80px 20px;
-  }
-
-  /* About layout */
-  .about-hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
+  /* About */
   .profile-pic {
     width: 240px;
     height: 240px;
   }
 
-  /* Projects grid cards */
-  .project-img {
-    height: 230px;
+  .about-hero {
+    flex-direction: column;
+    text-align: center;
   }
 
-  /* Contact card & bunny */
-  .contact-card {
-    padding: 40px 20px;
-  }
-
+  /* Contact bunny */
   .contact-bunny {
     width: 130px;
     top: -55px;
     left: 10px;
+  }
+
+  .contact-card {
+    padding: 40px 20px;
   }
 }
 
