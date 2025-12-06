@@ -1,4 +1,6 @@
-/* ---------- Color + font variables ---------- */
+/* =========================================
+   GLOBAL VARIABLES
+========================================= */
 :root {
   --dark: #463f3a;
   --taupe: #8a817c;
@@ -10,7 +12,10 @@
   --body-font: 'Lato', system-ui, sans-serif;
 }
 
-/* ---------- Global styles ---------- */
+/* =========================================
+   GLOBAL BASE STYLES
+========================================= */
+
 * {
   box-sizing: border-box;
 }
@@ -21,17 +26,14 @@ body {
   background-color: var(--offwhite);
   color: var(--dark);
 
-  /* Fade in the entire page */
   opacity: 0;
   animation: pageFloat 0.7s ease-out forwards;
 }
 
-@keyframes pageFloat {
-  from { opacity: 0; transform: translateY(15px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* =========================================
+   HEADER + NAV
+========================================= */
 
-/* ---------- Header + nav ---------- */
 header {
   background-color: #ffffff;
   padding: 100px 0;
@@ -57,7 +59,7 @@ nav {
   color: var(--dark);
 }
 
-/* Nav links */
+/* Nav links wrapper */
 .nav-links {
   display: flex;
   gap: 50px;
@@ -66,6 +68,7 @@ nav {
   margin-right: 80px;
 }
 
+/* Individual nav links */
 nav a {
   text-decoration: none;
   color: var(--dark);
@@ -74,22 +77,16 @@ nav a {
   transition: color 0.2s ease;
 }
 
-/* Click bump */
+/* Small click bump */
 nav a:active {
   animation: bump 0.25s ease-out;
-}
-
-@keyframes bump {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(3px); }
-  100% { transform: translateY(0); }
 }
 
 nav a:hover {
   color: var(--peach);
 }
 
-/* Flower icon */
+/* Flower icon in header */
 .flower-icon {
   width: 180px;
   position: absolute;
@@ -98,12 +95,10 @@ nav a:hover {
   animation: grow 5s ease-in-out infinite;
 }
 
-@keyframes grow {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
+/* =========================================
+   HOME PAGE HERO
+========================================= */
 
-/* ---------- Homepage hero ---------- */
 .hero {
   padding: 200px 20px;
   margin-left: 100px;
@@ -114,35 +109,28 @@ nav a:hover {
 
 .hero h1,
 .hero p,
-.cta-wrap {
+.cta-button {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.9s ease-out forwards;
 }
 
-.hero h1 { animation-delay: 0.2s; }
-.hero p { animation-delay: 0.35s; }
-.cta-wrap { animation-delay: 0.5s; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 .hero h1 {
+  animation-delay: 0.2s;
   font-family: var(--heading-font);
   font-size: 6rem;
   margin: 0;
 }
 
 .hero p {
+  animation-delay: 0.35s;
   font-size: 2rem;
   color: var(--taupe);
   margin: 20px 0 40px 0;
 }
 
-/* CTA button */
 .cta-button {
+  animation-delay: 0.5s;
   background-color: var(--peach);
   color: white;
   padding: 20px 40px;
@@ -154,20 +142,14 @@ nav a:hover {
   transition: box-shadow 0.3s ease;
 }
 
-/* Wiggle effect */
+/* Wiggle on hover */
 .cta-button:hover {
   animation: wiggle 0.45s ease-in-out;
 }
 
-@keyframes wiggle {
-  0%   { transform: rotate(0); }
-  25%  { transform: rotate(1deg); }
-  50%  { transform: rotate(-1deg); }
-  75%  { transform: rotate(1deg); }
-  100% { transform: rotate(0); }
-}
-
-/* ---------- ABOUT PAGE ---------- */
+/* =========================================
+   ABOUT PAGE
+========================================= */
 
 .about-container {
   max-width: 1200px;
@@ -175,7 +157,7 @@ nav a:hover {
   padding: 120px 40px;
 }
 
-/* About hero section */
+/* About hero: image + text */
 .about-hero {
   display: flex;
   align-items: center;
@@ -186,7 +168,7 @@ nav a:hover {
   animation: fadeUp 0.8s ease-out forwards;
   animation-delay: 0.3s;
 
-  min-height: 350px; /* keeps image/text from collapsing */
+  min-height: 350px;
 }
 
 .profile-pic {
@@ -200,6 +182,7 @@ nav a:hover {
 .about-text h2 {
   font-size: 3.5rem;
   margin-bottom: 20px;
+  font-family: var(--heading-font);
 }
 
 .about-text p {
@@ -209,7 +192,7 @@ nav a:hover {
   color: var(--dark);
 }
 
-/* ---------- EMOJI LIST (hover animation only) ---------- */
+/* Emoji list */
 .about-list {
   list-style: none;
   padding: 0;
@@ -227,7 +210,7 @@ nav a:hover {
   color: var(--peach);
 }
 
-/* ---------- CARDS ---------- */
+/* Info cards under about */
 .info-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -250,7 +233,7 @@ nav a:hover {
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
-/* Glow border */
+/* Peach glow border on hover */
 .card::after {
   content: "";
   position: absolute;
@@ -276,7 +259,7 @@ nav a:hover {
   color: var(--taupe);
 }
 
-/* CTA in About */
+/* About page CTA */
 .about-cta {
   text-align: center;
 }
@@ -296,19 +279,9 @@ nav a:hover {
   transform: translateY(-3px);
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .about-hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .info-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---------- PROJECTS PAGE ---------- */
+/* =========================================
+   PROJECTS GRID PAGE
+========================================= */
 
 .projects-container {
   max-width: 1200px;
@@ -329,7 +302,7 @@ nav a:hover {
   gap: 40px;
 }
 
-/* Project cards on grid page */
+/* Project cards */
 .project-card {
   background-color: #ffffff;
   padding: 32px;
@@ -340,8 +313,8 @@ nav a:hover {
   position: relative;
   overflow: hidden;
 
-  display: flex;              /* NEW - keeps layout consistent */
-  flex-direction: column;     /* NEW */
+  display: flex;
+  flex-direction: column;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -368,8 +341,8 @@ nav a:hover {
 
 .project-img {
   width: 100%;
-  height: 320px;              /* NEW - consistent height */
-  object-fit: cover;          /* NEW - clean cropping */
+  height: 320px;
+  object-fit: cover;
   border-radius: 15px;
   margin-bottom: 18px;
 }
@@ -395,14 +368,9 @@ nav a:hover {
   font-weight: 600;
 }
 
-/* Projects responsive */
-@media (max-width: 900px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---------- PROJECT DETAIL PAGES ---------- */
+/* =========================================
+   PROJECT DETAIL PAGES
+========================================= */
 
 .project-detail {
   max-width: 1200px;
@@ -487,14 +455,9 @@ nav a:hover {
   margin-top: 8px;
 }
 
-/* Responsive for project detail */
-@media (max-width: 900px) {
-  .project-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---------- CONTACT PAGE ---------- */
+/* =========================================
+   CONTACT PAGE
+========================================= */
 
 .contact-container {
   max-width: 900px;
@@ -507,8 +470,8 @@ nav a:hover {
   font-size: 3.5rem;
   font-family: var(--heading-font);
   margin-bottom: 10px;
-  animation: fadeUp 0.9s ease-out forwards;
   opacity: 0;
+  animation: fadeUp 0.9s ease-out forwards;
 }
 
 .contact-hero p {
@@ -516,9 +479,9 @@ nav a:hover {
   color: var(--taupe);
   max-width: 600px;
   margin: 0 auto 50px auto;
+  opacity: 0;
   animation: fadeUp 0.9s ease-out forwards;
   animation-delay: 0.15s;
-  opacity: 0;
 }
 
 /* Contact Card */
@@ -528,7 +491,7 @@ nav a:hover {
   border-radius: 22px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.07);
   position: relative;
-  overflow: visible; /* FIXES THE STAR BEING CUT OFF */
+  overflow: visible;
 
   opacity: 0;
   animation: fadeUp 0.9s ease-out forwards;
@@ -574,15 +537,48 @@ nav a:hover {
   opacity: 1;
 }
 
+/* Bunny sitting on card */
 .contact-bunny {
-  width: 205px;               /* bigger but still cute + proportional */
+  width: 205px;
   position: absolute;
-  top: -85px;                 /* lifted higher so it sits right on the edge */
-  left: -5px;                 
+  top: -85px;
+  left: -5px;
   z-index: 10;
-
-  animation: bunnyHop 2.4s ease-in-out infinite;
   transform-origin: bottom center;
+  animation: bunnyHop 2.4s ease-in-out infinite;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes pageFloat {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bump {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(3px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes grow {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wiggle {
+  0%   { transform: rotate(0); }
+  25%  { transform: rotate(1deg); }
+  50%  { transform: rotate(-1deg); }
+  75%  { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
 }
 
 @keyframes bunnyHop {
@@ -592,18 +588,50 @@ nav a:hover {
   100% { transform: translateY(0); }
 }
 
-/* ---------- MOBILE FIXES ---------- */
-@media (max-width: 700px) {
+/* =========================================
+   RESPONSIVE LAYOUT
+========================================= */
 
-  /* Header */
+/* General tablet-ish layout tweaks */
+@media (max-width: 900px) {
+  .info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile: stacked nav + smaller hero text */
+@media (max-width: 800px) {
+
+  /* Header + nav: logo on top, links centered below */
+  header {
+    padding: 40px 0;
+  }
+
   nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
     padding-left: 20px;
     padding-right: 20px;
-    gap: 20px;
   }
 
   .logo {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .nav-links {
+    margin: 0;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .nav-links a {
@@ -611,46 +639,64 @@ nav a:hover {
   }
 
   .flower-icon {
-    width: 120px;
-    top: -10px;
-    right: 0px;
+    width: 90px;
+    top: -5px;
+    right: 10px;
   }
 
-  /* Projects grid */
-  .project-grid {
-    grid-template-columns: 1fr;
+  /* Home hero */
+  .hero {
+    margin-left: 0;
+    padding: 120px 20px 80px 20px;
   }
 
-  .project-img {
-    height: 230px;
+  .hero h1 {
+    font-size: 3rem;       /* MUCH smaller on mobile (your choice B) */
   }
 
-  /* About page image */
-  .profile-pic {
-    width: 240px;
-    height: 240px;
+  .hero p {
+    font-size: 1.4rem;
+    max-width: 100%;
   }
 
+  .cta-button {
+    font-size: 1.2rem;
+    padding: 16px 28px;
+  }
+
+  /* Shared container padding */
+  .about-container,
+  .projects-container,
+  .project-detail,
+  .contact-container {
+    padding: 80px 20px;
+  }
+
+  /* About layout */
   .about-hero {
     flex-direction: column;
     text-align: center;
   }
 
-  /* Contact bunny */
-  .contact-bunny {
-    width: 130px;         /* smaller bunny for mobile */
-    top: -55px;           /* sits nicely on small screens */
-    left: 10px;           /* moves inward so it doesn't clip */
+  .profile-pic {
+    width: 240px;
+    height: 240px;
   }
 
-  /* Contact card spacing */
+  /* Projects grid cards */
+  .project-img {
+    height: 230px;
+  }
+
+  /* Contact card & bunny */
   .contact-card {
     padding: 40px 20px;
   }
 
-  /* Reduce big headings */
-  h1, .projects-title {
-    font-size: 2.3rem;
+  .contact-bunny {
+    width: 130px;
+    top: -55px;
+    left: 10px;
   }
 }
 
