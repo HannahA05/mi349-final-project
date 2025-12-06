@@ -1,6 +1,6 @@
-/* =========================================
-   GLOBAL VARIABLES
-========================================= */
+
+   /*GLOBAL VARIABLES*/
+
 :root {
   --dark: #463f3a;
   --taupe: #8a817c;
@@ -12,9 +12,7 @@
   --body-font: 'Lato', system-ui, sans-serif;
 }
 
-/* =========================================
-   GLOBAL BASE STYLES
-========================================= */
+/*GLOBAL BASE STYLES*/
 
 * {
   box-sizing: border-box;
@@ -30,9 +28,7 @@ body {
   animation: pageFloat 0.7s ease-out forwards;
 }
 
-/* =========================================
-   HEADER + NAV
-========================================= */
+   /*HEADER + NAV*/
 
 header {
   background-color: #ffffff;
@@ -75,6 +71,8 @@ nav a {
   font-weight: 700;
   font-size: 2rem;
   transition: color 0.2s ease;
+  letter-spacing: normal; 
+  word-spacing: 0.35rem;
 }
 
 /* Small click bump */
@@ -87,6 +85,13 @@ nav a:hover {
 }
 
 /* Flower icon in header */
+/* Slight lift on desktop to prevent overlap */
+@media (min-width: 801px) {
+  .flower-icon {
+    top: -35px;     /* was -15px */
+  }
+}
+
 .flower-icon {
   width: 180px;
   position: absolute;
@@ -96,9 +101,8 @@ nav a:hover {
 }
 
 
-/* --------------------------------------------------------
-   HOMEPAGE HERO
---------------------------------------------------------- */
+/*HOMEPAGE HERO */
+
 .hero {
   padding: 200px 20px;
   margin-left: 100px;
@@ -160,9 +164,7 @@ nav a:hover {
   100% { transform: rotate(0); }
 }
 
-/* =========================================
-   ABOUT PAGE
-========================================= */
+/* ABOUT PAGE */
 
 .about-container {
   max-width: 1200px;
@@ -292,9 +294,7 @@ nav a:hover {
   transform: translateY(-3px);
 }
 
-/* =========================================
-   PROJECTS GRID PAGE
-========================================= */
+/* PROJECTS GRID PAGE */
 
 .projects-container {
   max-width: 1200px;
@@ -381,9 +381,7 @@ nav a:hover {
   font-weight: 600;
 }
 
-/* =========================================
-   PROJECT DETAIL PAGES
-========================================= */
+/* PROJECT DETAIL PAGES */
 
 .project-detail {
   max-width: 1200px;
@@ -468,9 +466,7 @@ nav a:hover {
   margin-top: 8px;
 }
 
-/* =========================================
-   CONTACT PAGE
-========================================= */
+/* CONTACT PAGE */
 
 .contact-container {
   max-width: 900px;
@@ -561,9 +557,7 @@ nav a:hover {
   animation: bunnyHop 2.4s ease-in-out infinite;
 }
 
-/* =========================================
-   ANIMATIONS
-========================================= */
+/* ANIMATIONS */
 
 @keyframes pageFloat {
   from { opacity: 0; transform: translateY(15px); }
@@ -601,9 +595,7 @@ nav a:hover {
   100% { transform: translateY(0); }
 }
 
-/* =========================================
-   RESPONSIVE LAYOUT
-========================================= */
+/* RESPONSIVE LAYOUT */
 
 /* General tablet-ish layout tweaks */
 @media (max-width: 900px) {
